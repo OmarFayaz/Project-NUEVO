@@ -15,7 +15,7 @@ import numpy as np
 
 TAG_ID = 11 # set aruco tag ID 11 
 POSITION_UNIT = Unit.MM
-WHEEL_DIAMETER = 74.0
+WHEEL_DIAMETER = 87.0
 WHEEL_BASE = 333.0
 INITIAL_THETA_DEG = 90.0
 
@@ -76,9 +76,16 @@ def run(robot: Robot) -> None:
             # ]
             # left lane
             path_control_points = [
-                (300.0,   0.0),
-                (300.0, 2500.0),
-                (1300.0, 2500.0),
+                (0, 0),   # P0 start
+                (0, 3355),  # P1 go down first alley 
+                (530, 3355),  # P2 make a right above ramp 
+
+                (530, 850),  # P3 sweep left
+                (1525, 850),  # P4 drop down
+                (1525, 3000),  # P5 sweep right
+                (1650, 3000),  # P6 drop down
+
+                (1650, 850),  # P6 drop down
             ]
 
             path = densify_polyline(path_control_points, spacing=400.0)
